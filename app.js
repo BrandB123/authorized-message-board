@@ -2,11 +2,12 @@ const express =  require('express');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcryptjs');
+
 const indexRouter = require('./routes/indexRouter');
 const signUpRouter = require('./routes/signUpRouter');
 
 const pool = require('./db/pool');
-
 
 const app = express();
 app.set("view engine", "ejs")
@@ -54,5 +55,13 @@ passport.deserializeUser(async (id, done) => {
 
 app.use("/", indexRouter);
 app.use("/sign-up", signUpRouter);
+// app.post(
+//     "/sign-in", 
+//     passport.authenticate("local", {
+//         successRedirect: "/sign-up",
+//         failureRedirect: "/",
+//         failureFlash: true
+//     })
+// );
 
 app.listen(3000, () => console.log("Listening for authorized users on port 3000"))

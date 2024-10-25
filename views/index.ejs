@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <% if (locals.user) {%>
+      <h1> Welcome back <%= user.name %> </h1>
+      <a href="/join-the-club">Become a Member</a>
+      <a href="/message">Add a Message</a>
+      <a href="/sign-out">Sign Out</a>
+      <p>if a member, add buttons to add a message</p>
+      <h3>Messages will be added here in the future</h3>
+      <p>if a member, make authors name visible</p>
+    <% } else { %>
+      <h1>Sign in</h1>
+      <a href="/sign-up">Sign Up</a>
+      <form method="POST" action="/sign-in">
+        <label for="email">Email:</label>
+        <input id="email" name="username" placeholder="johnsmith@email.com" type="email"/>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"/>
+        <button type="submit">Sign in</button>
+      </form>
+    <% } %>
+</body>
+</html>
