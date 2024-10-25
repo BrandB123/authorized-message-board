@@ -9,7 +9,6 @@ async function addUser(req, res, next){
         }
         try {
             db.addUser(name, req.body.email, hashedPassword)
-            res.redirect("/")
         } catch(err){
             return next(err)
         }

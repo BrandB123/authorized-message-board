@@ -7,8 +7,9 @@ signUpRouter.get("/", (req, res) => {
     res.render("sign-up")
 })
 
-// signUpRouter.post("/", async (req, res, next) => {
-//     addUser(req, res, next)
-// });
+signUpRouter.post("/", async (req, res, next) => {
+    addUser(req, res, next)
+    res.redirect("/")
+});
 
 module.exports = signUpRouter;
