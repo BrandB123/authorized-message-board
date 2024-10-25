@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 
 const indexRouter = require('./routes/indexRouter');
 const signUpRouter = require('./routes/signUpRouter');
+const membersRouter = require('./routes/membersRouter')
 
 const pool = require('./db/pool');
 
@@ -52,16 +53,11 @@ passport.deserializeUser(async (id, done) => {
       done(err);
     }
 });
+  
 
 app.use("/", indexRouter);
 app.use("/sign-up", signUpRouter);
-// app.post(
-//     "/sign-in", 
-//     passport.authenticate("local", {
-//         successRedirect: "/sign-up",
-//         failureRedirect: "/",
-//         failureFlash: true
-//     })
-// );
+app.use("/members", membersRouter);
+
 
 app.listen(3000, () => console.log("Listening for authorized users on port 3000"))

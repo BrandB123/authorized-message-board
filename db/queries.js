@@ -12,4 +12,13 @@ async function addUser(name, email, hashedPassword){
     }
 }
 
-module.exports = {addUser}
+async function addMember(username){
+    try {
+        const { rows } = await pool.query(`SELECT * FROM users WHERE username = $1`, [username])
+        await pool.query(`UPDATE users SET member = true WHERE id = $1`, [rows[0].id])
+    } catch(err) {
+        console.error("Error adding member: ", err)
+    }
+}
+
+module.exports = {addUser, addMember}
