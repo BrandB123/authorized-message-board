@@ -11,7 +11,8 @@ const membersRouter = require('./routes/membersRouter')
 const pool = require('./db/pool');
 
 const app = express();
-app.set("view engine", "ejs")
+// app.set("view engine", "ejs")
+
 
 app.use(session({ secret: "unsecureExample", resave: false, saveUninitialized: false }));
 app.use(passport.session());
@@ -53,6 +54,15 @@ passport.deserializeUser(async (id, done) => {
       done(err);
     }
 });
+
+app.use(function (req, res, next) {
+    // Make `user` available in templates
+    res.locals.user = req.user
+    next()
+  })
+
+app.set("view engine", "ejs")
+
   
 
 app.use("/", indexRouter);

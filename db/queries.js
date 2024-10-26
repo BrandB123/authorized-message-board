@@ -21,4 +21,15 @@ async function addMember(username){
     }
 }
 
-module.exports = {addUser, addMember}
+async function addMessage(title, timestamp, message, author){
+    try{
+	    await pool.query(`INSERT INTO messages (title, timestamp, messages, author_id)
+			              VALUES ($1, $2, $3, $4)`,
+			              [title, timestamp, message, author])
+	    console.log("Added new message to the database.");
+    } catch (err){
+	console.error("Error adding new message: ", err)
+    }
+}
+
+module.exports = {addUser, addMember, addMessage}
