@@ -1,16 +1,12 @@
 const { Router } = require('express');
 const passport = require('passport');
+const getMessages = require('../controllers/getMessages')
 
 const indexRouter = Router()
 
-indexRouter.get("/", (req, res) => {
-    // get messages data
-    res.render("index", { user: req.user });
-})
-
-indexRouter.post("/", (req, res, next) => {
-    // this is to be used for adding messages to the db
-    res.end();
+indexRouter.get("/", async (req, res) => {
+    const messages = await getMessages();
+    res.render("index", { user: req.user, messages: messages });
 })
 
 indexRouter.post(

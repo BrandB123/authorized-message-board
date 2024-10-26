@@ -23,13 +23,27 @@ async function addMember(username){
 
 async function addMessage(title, timestamp, message, author){
     try{
-	    await pool.query(`INSERT INTO messages (title, timestamp, messages, author_id)
+	    await pool.query(`INSERT INTO messages (title, timestamp, messages, author)
 			              VALUES ($1, $2, $3, $4)`,
 			              [title, timestamp, message, author])
 	    console.log("Added new message to the database.");
     } catch (err){
-	console.error("Error adding new message: ", err)
+	    console.error("Error adding new message: ", err)
     }
 }
 
-module.exports = {addUser, addMember, addMessage}
+async function getMessages(){
+    const {rows} = await pool.query(`SELECT * FROM messages`);
+    return rows
+}
+
+async function deleteMessage(id){
+    try {
+        await pool.query(`DELETE FROM messages WHERE id = $1`, [id]);
+        console.log("Message deleted from database")
+    } catch (err){
+        console.error("Error deleting message: ", err)
+    }
+}
+
+module.exports = {addUser, addMember, addMessage, getMessages, deleteMessage}

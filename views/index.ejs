@@ -7,7 +7,7 @@
 </head>
 <body>
     <% if (locals.user) {%>
-      <h1> Welcome back <%= user.name %> </h1>
+      <h1> Welcome back, <%= user.name %> </h1>
       <% if (!locals.user.member) { %> 
         <a href="/members/join-the-club">Become a Member</a> 
       <% } %>
@@ -15,8 +15,22 @@
         <a href="/members/message">Add a Message</a>
         <% } %>
       <a href="/sign-out">Sign Out</a>
-      <h3>Messages will be added here in the future</h3>
-      <p>if a member, make authors name visible</p>
+
+      <% messages.forEach(message => { %> 
+        <div>
+	      <h3><%= message.title %></h3>
+          <p><%= message.messages %></p>
+	      <% if (locals.user.member) { %> 
+            <p><b><%= message.author %></b></p>
+            <p><i><%= message.timestamp %></i></p>
+	      <% } %>
+	      <% if (locals.user.admin) { %> 
+            <button class="delete-message-button" data-messageId="message.id">delete</button>
+	      <% } %>
+	    </div>
+      <% }); %>
+
+
     <% } else { %>
       <h1>Sign in</h1>
       <a href="/sign-up">Sign Up</a>

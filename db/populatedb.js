@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS messages (
     title VARCHAR ( 255 ) NOT NULL,
     timestamp TIMESTAMP NOT NULL,
     messages VARCHAR ( 500 ) NOT NULL,
-    author_id INTEGER REFERENCES users(id)
+    author VARCHAR ( 255 ) REFERENCES users(username)
 );
 `;
 
