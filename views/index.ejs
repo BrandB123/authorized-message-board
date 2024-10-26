@@ -22,7 +22,7 @@
       <a href="/sign-out" style="border: solid 1px black; border-radius: 5px; padding: 5px 15px; margin: 20px 5px; text-decoration: none;">Sign Out</a>
 
       <% messages.forEach(message => { %> 
-        <div style="border: solid 1px black; border-radius: 5px; padding: 10px; margin: 20px; position: relative;">
+        <form action="/" method="POST" style="border: solid 1px black; border-radius: 5px; padding: 10px; margin: 20px; position: relative;">
 	      <h3 style="margin: 0px;"><%= message.title %></h3>
           <p style="margin: 5px auto 15px 15px;"><%= message.messages %></p>
 	      <% if (locals.user.member) { %> 
@@ -32,11 +32,10 @@
             </div>
 	      <% } %>
 	      <% if (locals.user.admin) { %> 
-            <button class="delete-message-button" data-messageId="message.id"
-            style="position: absolute; top: 10px; right: 10px;"
-            >Delete</button>
+            <input name="messageId" value="<%= message.id %>" style="visibility: hidden;"/>
+            <button style="position: absolute; top: 10px; right: 10px;">Delete</button>
 	      <% } %>
-	    </div>
+	    </form>
       <% }); %>
 
 

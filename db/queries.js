@@ -38,7 +38,7 @@ async function getMessages(){
 }
 
 async function deleteMessage(id){
-    try {
+    try { 
         await pool.query(`DELETE FROM messages WHERE id = $1`, [id]);
         console.log("Message deleted from database")
     } catch (err){

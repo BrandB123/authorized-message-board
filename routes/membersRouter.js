@@ -25,7 +25,6 @@ membersRouter.post("/join-the-club", async (req, res, next) => {
 });
 
 membersRouter.get("/message", (req, res) => {
-    console.log(res.locals.user)
     res.render("message");
 })
 
