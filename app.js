@@ -66,5 +66,9 @@ app.use("/", indexRouter);
 app.use("/sign-up", signUpRouter);
 app.use("/members", membersRouter);
 
+app.get('/test', (req, res) => {
+  res.send('Server is working');
+});
 
-app.listen(PORT, () => console.log(`Listening for authorized users on port ${PORT}`))
+
+app.listen(PORT, '0.0.0.0', () => console.log(`Listening for authorized users on port ${PORT}`))
