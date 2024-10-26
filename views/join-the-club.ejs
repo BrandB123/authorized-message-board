@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join the Club</title>
+    <style>
+        a:visited{
+          color: black;
+        }
+    </style>
 </head>
 <body>
     <h1>Join the Club</h1>
-    <a href="/">Home</a>
+    <a href="/" style="border: solid 1px black; border-radius: 5px; padding: 5px 15px; margin: 30px 20px; text-decoration: none;">Home</a> 
     <p>Members are able to see behind the curtain to see who is behind the messages on the message board. Enter the correct password in the field below to join.</p>
     <form method="POST" action="/members/join-the-club">
         <label for="secret-password">Secret Password:</label>

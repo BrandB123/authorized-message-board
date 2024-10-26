@@ -10,12 +10,17 @@ membersRouter.get("/join-the-club", (req, res) => {
 })
 
 membersRouter.post("/join-the-club", async (req, res, next) => {
-    if (req.body.secretPassword === process.env.MEMBERS_PASSWORD){
+    try {
+        if (req.body.secretPassword === process.env.MEMBERS_PASSWORD){
         await db.addMember(res.locals.user.username);
         console.log(`Member status added`);
         res.redirect("/")
-    } else {
+        } else {
         res.redirect("/members/join-the-club")
+        }
+    } catch (err){
+        console.error(err)
+        res.redirect("/");
     }
 });
 

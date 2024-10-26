@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+    <style>
+      a:visited{
+        color: black;
+      }
+    </style>
 </head>
 <body>
     <% if (locals.user) {%>
       <h1> Welcome back, <%= user.name %> </h1>
       <% if (!locals.user.member) { %> 
-        <a href="/members/join-the-club">Become a Member</a> 
+        <a href="/members/join-the-club" style="border: solid 1px black; border-radius: 5px; padding: 5px 15px; margin: 20px 5px 20px 20px; text-decoration: none;">Become a Member</a> 
       <% } %>
       <% if (locals.user.member) { %> 
-        <a href="/members/message">Add a Message</a>
+        <a href="/members/message" style="border: solid 1px black; border-radius: 5px; padding: 5px 15px; margin: 20px 5px; text-decoration: none;">Add a Message</a>
         <% } %>
-      <a href="/sign-out">Sign Out</a>
+      <a href="/sign-out" style="border: solid 1px black; border-radius: 5px; padding: 5px 15px; margin: 20px 5px; text-decoration: none;">Sign Out</a>
 
       <% messages.forEach(message => { %> 
-        <div>
-	      <h3><%= message.title %></h3>
-          <p><%= message.messages %></p>
+        <div style="border: solid 1px black; border-radius: 5px; padding: 10px; margin: 20px; position: relative;">
+	      <h3 style="margin: 0px;"><%= message.title %></h3>
+          <p style="margin: 5px auto 15px 15px;"><%= message.messages %></p>
 	      <% if (locals.user.member) { %> 
-            <p><b><%= message.author %></b></p>
-            <p><i><%= message.timestamp %></i></p>
+            <div>
+              <p style="display: inline;"><b><%= message.author %></b></p>
+              <p style="display: inline;"><i><%= message.timestamp %></i></p>
+            </div>
 	      <% } %>
 	      <% if (locals.user.admin) { %> 
-            <button class="delete-message-button" data-messageId="message.id">delete</button>
+            <button class="delete-message-button" data-messageId="message.id"
+            style="position: absolute; top: 10px; right: 10px;"
+            >Delete</button>
 	      <% } %>
 	    </div>
       <% }); %>
@@ -33,14 +42,23 @@
 
     <% } else { %>
       <h1>Sign in</h1>
-      <a href="/sign-up">Sign Up</a>
-      <form method="POST" action="/sign-in">
-        <label for="email">Email:</label>
-        <input id="email" name="username" placeholder="johnsmith@email.com" type="email"/>
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password"/>
-        <button type="submit">Sign in</button>
+      <form method="POST" action="/sign-in"
+      style="border: solid 1px black; border-radius: 10px; padding: 5%; width: 50%; margin-left: 25%;"
+      >
+        <div style="text-align: center; margin-bottom: 10px;">
+          <label for="email">Email:</label>
+          <input id="email" name="username" placeholder="johnsmith@email.com" type="email"/>
+        </div>
+        <div style="text-align: center;">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password"/>
+        </div>
+        <button type="submit" style="margin: 10px 40%;">Sign in</button>
       </form>
+      <div style="text-align: center;">
+        <p style="margin-bottom: 0px;">or</p>
+        <a href="/sign-up">Create an Account</a>
+      </div>
     <% } %>
 </body>
 </html>

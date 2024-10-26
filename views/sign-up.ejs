@@ -4,20 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <style>
+      a:visited{
+        color: black;
+      }
+    </style>
 </head>
 <body>
     <h1>Sign up</h1>
-    <a href="/">Already Registered</a>
-    <form method="POST" action="/sign-up">
-      <label for="first-name">First Name</label>
-      <input id="first-name" name="firstName" placeholder="John" type="text"/>
-      <label for="last-name">Last Name</label>
-      <input id="last-name" name="lastName" placeholder="Smith" type="text"/>
-      <label for="email">Email:</label>
-      <input id="email" name="email" placeholder="johnsmith@email.com" type="email"/>
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password"/>
-      <button type="submit">Sign Up</button>
+    <p style="display: inline;">Already have an account? </p> 
+    <a href="/" >Sign in</a>
+    <form method="POST" action="/sign-up"
+          style="margin-top: 10px; border: solid 1px black; border-radius: 10px; padding: 5%;"
+    >
+      <div style="margin: 5px 10px; display: inline-block;">
+        <label for="first-name">First Name</label>
+        <input id="first-name" name="firstName" placeholder="John" type="text"/>
+      </div>
+      <div style="margin: 5px 10px; display: inline-block;">
+        <label for="last-name">Last Name</label>
+        <input id="last-name" name="lastName" placeholder="Smith" type="text"/>
+      </div>
+      <div style="margin: 5px 10px; display: inline-block;">
+        <label for="email">Email:</label>
+        <input id="email" name="email" placeholder="johnsmith@email.com" type="email" style="width: 200px;"/>
+      </div>
+      <div style="margin: 5px 10px; display: inline-block;">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"/>
+      </div>
+      <button type="submit" style="display: block; margin: 5px 30%; padding: 5px 10%;">Sign Up</button>
     </form>
 </body>
 </html>

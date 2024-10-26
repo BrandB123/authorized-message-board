@@ -1,10 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add a Message</title>
+  <style>
+      a:visited{
+        color: black;
+      }
+  </style>
+</head>
 <body>
-    <h1>Add a Message</h1>
-    <form action="/members/message" method="POST">
-      <label for="title">Title:</label>
-      <input id="title" name="title" placeholder="title" type="text"/>
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="6" cols="50" placeholder="Add your message here."></textarea>
-      <button type="submit">Send</button>
-    </form>
+  <h1>Add a Message</h1>
+  <a href="/" style="border: solid 1px black; border-radius: 5px; padding: 5px 15px; margin: 30px 20px; text-decoration: none;">Home</a> 
+  <form action="/members/message" method="POST" style="margin: 15px 10px;">
+    <label for="title">Title:</label>
+    <input id="title" name="title" placeholder="title" type="text" required/>
+    <div>
+      <label for="message" style="display: block; margin-top: 10px;">Message:</label>
+      <textarea id="message" name="message" rows="6" cols="50" placeholder="Add your message here." required></textarea>
+    </div>
+    <button type="submit" style="margin-top: 10px;">Send</button>
+  </form>
 </body>
+</html>
