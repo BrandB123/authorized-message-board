@@ -6,7 +6,7 @@ async function addMessage(req, res, next){
       const author = res.locals.user.username
       await db.addMessage(req.body.title, date, req.body.message, author);
     } catch (err){
-	return next(err)
+	    return next(err)
     }
     next()
 }

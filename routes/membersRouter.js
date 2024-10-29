@@ -2,10 +2,11 @@ require('dotenv').config()
 const { Router } = require('express');
 const db = require('../db/queries')
 const addMessage = require('../controllers/addMessage');
+const authenticateUser = require('../controllers/authenticateUser');
 
 const membersRouter = Router();
 
-membersRouter.get("/join-the-club", (req, res) => {
+membersRouter.get("/join-the-club", authenticateUser, (req, res) => {
     res.render("join-the-club")
 })
 
@@ -24,12 +25,11 @@ membersRouter.post("/join-the-club", async (req, res, next) => {
     }
 });
 
-membersRouter.get("/message", (req, res) => {
+membersRouter.get("/message", authenticateUser, (req, res) => {
     res.render("message");
 })
 
-membersRouter.post("/message", (req, res, next) => {
-    addMessage(req, res, next);
+membersRouter.post("/message", addMessage, (req, res, next) => {
     res.redirect("/");
 })
 
